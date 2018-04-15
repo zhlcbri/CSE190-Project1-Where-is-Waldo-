@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{39F610EC-9366-3402-91EE-74D643EEDB52}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>assimp</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp-vc140-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Debug";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Debug\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;D:\CalVR\3rdParty\lib\zlib.lib;..\contrib\irrXML\Debug\IrrXML.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/Debug/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/Debug/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Release";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Release\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;D:\CalVR\3rdParty\lib\zlib.lib;..\contrib\irrXML\Release\IrrXML.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/Release/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/Release/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="MinSizeRel";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"MinSizeRel\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;D:\CalVR\3rdParty\lib\zlib.lib;..\contrib\irrXML\MinSizeRel\IrrXML.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/MinSizeRel/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/MinSizeRel/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="RelWithDebInfo";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_OWN_ZLIB;ASSIMP_BUILD_NO_C4D_IMPORTER;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"RelWithDebInfo\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\MinimalVR-master\Include\LibOVR\assimp\.;C:\MinimalVR-master\Include\LibOVR\assimp\include;C:\MinimalVR-master\Include\LibOVR\assimp\build;C:\MinimalVR-master\Include\LibOVR\assimp\build\include;D:\CalVR\3rdParty\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\rapidjson\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\unzip;C:\MinimalVR-master\Include\LibOVR\assimp\contrib\irrXML;C:\MinimalVR-master\Include\LibOVR\assimp\code\..\contrib\openddlparser\include;C:\MinimalVR-master\Include\LibOVR\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;D:\CalVR\3rdParty\lib\zlib.lib;..\contrib\irrXML\RelWithDebInfo\IrrXML.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/RelWithDebInfo/assimp-vc140-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/MinimalVR-master/Include/LibOVR/assimp/build/code/RelWithDebInfo/assimp-vc140-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/MinimalVR-master/Include/LibOVR/assimp -BC:/MinimalVR-master/Include/LibOVR/assimp/build --check-stamp-file C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\cmake-modules\FindRT.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/MinimalVR-master/Include/LibOVR/assimp -BC:/MinimalVR-master/Include/LibOVR/assimp/build --check-stamp-file C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\cmake-modules\FindRT.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/MinimalVR-master/Include/LibOVR/assimp -BC:/MinimalVR-master/Include/LibOVR/assimp/build --check-stamp-file C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\cmake-modules\FindRT.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/MinimalVR-master/Include/LibOVR/assimp -BC:/MinimalVR-master/Include/LibOVR/assimp/build --check-stamp-file C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;C:\MinimalVR-master\Include\LibOVR\assimp\cmake-modules\FindRT.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\MinimalVR-master\Include\LibOVR\assimp\code\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\MinimalVR-master\Include\LibOVR\assimp\build\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BaseProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ScenePrivate.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DefaultProgressHandler.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CInterfaceIOWrapper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IFF.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\VertexTriangleAdjacency.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ScenePreprocessor.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SplitByBoneCountProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TargetAnimation.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\simd.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Win32DebugLogStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FileLogStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\StdOStreamLogStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\BlobIOSystem.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CalcTangentsProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ComputeUVMappingProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ConvertToLHProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\EmbedTexturesProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindDegenerates.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindInstancesProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindInvalidDataProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FixNormalsStep.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\GenFaceNormalsProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\GenVertexNormalsProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PretransformVertices.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ImproveCacheLocality.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\JoinVerticesProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LimitBoneWeightsProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RemoveRedundantMaterials.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RemoveVCProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SortByPTypeProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SplitLargeMeshes.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TextureTransform.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TriangulateProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ValidateDataStructure.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OptimizeGraph.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OptimizeMeshes.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DeboneProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ProcessHelper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PolyTools.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MakeVerboseFormat.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ScaleProcess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MaterialSystem.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\STEPFile.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\StepExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter_Macro.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter_Node.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSHelper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ACLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ASELoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ASEParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssbinExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssbinLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssxmlExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\B3DImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BVHLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaHelper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DXFLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DXFHelper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CSMLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\HMPFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\HMPLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\HalfLifeFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRMeshLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRShared.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOAnimation.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWSLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD2FileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD2Loader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD2NormalTable.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD3FileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD3Loader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD5Loader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD5Parser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDCFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDCLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDCNormalTable.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDLDefaultColorMap.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDLFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDLLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\NFFLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\NDOLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OFFLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileMtlImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjTools.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreStructs.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreParsingUtils.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreBinarySerializer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreXmlSerializer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OpenGEXExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OpenGEXImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OpenGEXStructs.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MS3DLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\COBLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\COBScene.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderDNA.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderDNA.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderScene.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderSceneGen.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderIntermediate.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderModifier.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderBMesh.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderTessellator.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCReaderGen_2x3.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCUtil.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\STEPFileReader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\STEPFileEncoding.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XGLLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXCompileConfig.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXTokenizer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXImportSettings.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXConverter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXUtil.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXDocument.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXProperties.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXMeshGeometry.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExportNode.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExportProperty.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXCommon.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3DLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPFileData.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPFileParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPFileImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPZipArchive.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RawLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SIBImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SMDLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\STLLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\STLExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TerragenLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\UnrealLoader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileHelper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DExporter.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Macro.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Node.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FIReader.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFAsset.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFAsset.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFAssetWriter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFAssetWriter.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Asset.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Asset.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2AssetWriter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2AssetWriter.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Importer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Exporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFExporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFOpcPackage.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3MFXmlTags.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDCpp14.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDPmdParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDPmxParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDVmdParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\irrXMLWrapper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\unzip\crypt.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\unzip\ioapi.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\unzip\unzip.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\common\shapes.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\common\utils.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\cdt.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\sweep.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\clipper\clipper.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParser.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\OpenDDLExport.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\OpenDDLStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\DDLNode.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\include\openddlparser\Value.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcAdjacencyInfo.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcArithmeticCodec.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcBinaryStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcCommon.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDVEncodeParams.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDynamicVector.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcFIFO.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcSC3DMCEncodeParams.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTimer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleFans.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcVector.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcVector.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\zip\src\miniz.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\zip\src\zip.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\anim.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\camera.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\color4.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\color4.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\build\include\assimp\config.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\defs.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Defines.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\light.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\material.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\material.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\matrix3x3.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\matrix4x4.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\pbrmaterial.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\quaternion.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\scene.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\texture.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\types.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\vector2.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\vector3.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\version.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\DefaultIOStream.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\DefaultIOSystem.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SceneCombiner.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\fast_atof.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\qnan.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\BaseImporter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Hash.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\MemoryIOWrapper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\ParsingUtils.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\StreamReader.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\StreamWriter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\StringComparison.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\StringUtils.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SGSpatialSort.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\GenericProperty.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SpatialSort.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SkeletonMeshBuilder.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SmoothingGroups.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\SmoothingGroups.inl" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\StandardShapes.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\RemoveComments.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Subdivision.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Vertex.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\LineSplitter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\TinyFormatter.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Profiler.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\LogAux.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Bitmap.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\XMLTools.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\IOStreamBuffer.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\CreateAnimMesh.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\MathFunctions.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Macros.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Exceptional.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\ByteSwapper.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="C:\MinimalVR-master\Include\LibOVR\assimp\include\assimp\Compiler\pstdint.h" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Assimp.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BaseImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BaseProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PostStepRegistry.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ImporterRegistry.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DefaultIOStream.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DefaultIOSystem.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CInterfaceIOWrapper.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SGSpatialSort.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\VertexTriangleAdjacency.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SpatialSort.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SceneCombiner.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ScenePreprocessor.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SkeletonMeshBuilder.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SplitByBoneCountProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\StandardShapes.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TargetAnimation.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RemoveComments.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Subdivision.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\scene.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Bitmap.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Version.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CreateAnimMesh.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\simd.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DefaultLogger.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Exporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssimpCExport.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CalcTangentsProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ComputeUVMappingProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ConvertToLHProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\EmbedTexturesProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindDegenerates.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindInstancesProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FindInvalidDataProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FixNormalsStep.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\GenFaceNormalsProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\GenVertexNormalsProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PretransformVertices.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ImproveCacheLocality.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\JoinVerticesProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LimitBoneWeightsProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RemoveRedundantMaterials.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RemoveVCProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SortByPTypeProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SplitLargeMeshes.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TextureTransform.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TriangulateProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ValidateDataStructure.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OptimizeGraph.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OptimizeMeshes.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DeboneProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ProcessHelper.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MakeVerboseFormat.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ScaleProcess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MaterialSystem.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\StepExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter_Geometry.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter_Material.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AMFImporter_Postprocess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSConverter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\3DSExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ACLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ASELoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ASEParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssbinExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssbinLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\AssxmlExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\B3DImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BVHLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ColladaExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\DXFLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\CSMLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\HMPLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRMeshLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRShared.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\IRRLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOAnimation.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOBLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWOMaterial.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\LWSLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD2Loader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD3Loader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD5Loader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MD5Parser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDCLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDLLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MDLMaterialLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\NFFLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\NDOLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OFFLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileMtlImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjFileParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\ObjExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreStructs.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreBinarySerializer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreXmlSerializer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OgreMaterial.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OpenGEXExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\OpenGEXImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\PlyExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MS3DLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\COBLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderDNA.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderScene.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderModifier.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderBMesh.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\BlenderTessellator.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCReaderGen1_2x3.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCReaderGen2_2x3.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'"> /bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCUtil.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCGeometry.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCMaterial.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCProfile.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCCurve.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCBoolean.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\IFCOpenings.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\STEPFileReader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Importer\IFC\STEPFileEncoding.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XGLLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXTokenizer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXConverter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXUtil.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXDocument.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXProperties.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXMeshGeometry.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXMaterial.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXModel.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXAnimation.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXNodeAttribute.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXDeformer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXBinaryTokenizer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXDocumentUtil.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExportNode.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FBXExportProperty.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3DLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPFileParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPFileImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\Q3BSPZipArchive.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\RawLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SIBImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\SMDLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\STLLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\STLExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\TerragenLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\UnrealLoader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\XFileExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Geometry2D.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Geometry3D.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Group.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Light.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Metadata.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Networking.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Postprocess.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Rendering.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Shape.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DImporter_Texturing.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\FIReader.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\X3DVocabulary.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTFExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Importer.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\glTF2Exporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFExporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\D3MFOpcPackage.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDImporter.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\code\MMDPmxParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\unzip\ioapi.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\unzip\unzip.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\common\shapes.cc" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.cc" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\cdt.cc" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\sweep.cc" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.cc" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\clipper\clipper.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\OpenDDLParser.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\DDLNode.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\OpenDDLCommon.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\OpenDDLExport.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\Value.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\openddlparser\code\OpenDDLStream.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcArithmeticCodec.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTools.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\Open3DGC\o3dgcTriangleFans.cpp" />
+    <ClCompile Include="C:\MinimalVR-master\Include\LibOVR\assimp\contrib\zip\src\zip.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/MinimalVR-master/Include/LibOVR/assimp/build/ZERO_CHECK.vcxproj">
+      <Project>B6823A8D-714A-3624-A666-2581551063C8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/MinimalVR-master/Include/LibOVR/assimp/build/contrib/irrXML/IrrXML.vcxproj">
+      <Project>3685B76F-C3A1-3107-AE7A-63AA126E85E8</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

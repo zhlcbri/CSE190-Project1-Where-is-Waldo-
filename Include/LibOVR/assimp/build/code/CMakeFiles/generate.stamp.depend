@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+C:/MinimalVR-master/Include/LibOVR/assimp/code/CMakeLists.txt
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindRT.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake

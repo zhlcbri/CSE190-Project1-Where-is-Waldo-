@@ -1,0 +1,51 @@
+# CMake generation dependency list for this directory.
+C:/MinimalVR-master/Include/LibOVR/assimp/CMakeLists.txt
+C:/MinimalVR-master/Include/LibOVR/assimp/build/CMakeFiles/3.6.1/CMakeSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/build/CMakeFiles/3.6.1/CMakeCCompiler.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/build/CMakeFiles/3.6.1/CMakeCXXCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/build/CMakeFiles/3.6.1/CMakeRCCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/revision.h.in
+C:/MinimalVR-master/Include/LibOVR/assimp/include/assimp/config.h.in
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindPkgMacros.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/PrecompiledHeader.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/cmake_uninstall.cmake.in
+C:/MinimalVR-master/Include/LibOVR/assimp/assimp-config.cmake.in
+C:/MinimalVR-master/Include/LibOVR/assimp/assimp-config-version.cmake.in
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindDirectX.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindPkgMacros.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindZLIB.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindPkgMacros.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/cmake-modules/FindDevIL.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/MinimalVR-master/Include/LibOVR/assimp/assimp.pc.in
