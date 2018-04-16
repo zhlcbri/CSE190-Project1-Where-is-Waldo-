@@ -43,8 +43,9 @@ limitations under the License.
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-#include "Object.h"
+//#include "Object.h"
 #include "Shader.h"
+#include "Model.h"
 
 // Import the most commonly used types into the default namespace
 using glm::ivec3;
@@ -66,7 +67,8 @@ using namespace std;
 
 #include <GL/glew.h>
 
-Object * sphere; // cursor sphere
+//Object * sphere; // cursor sphere
+Model * sphere;
 
 bool checkFramebufferStatus(GLenum target = GL_FRAMEBUFFER) {
 	GLuint status = glCheckFramebufferStatus(target);
@@ -215,7 +217,7 @@ public:
 			glfwPollEvents();
 			update();
 			draw();
-			finishFrame();
+			finishFrame(); 
 		}
 
 		shutdownGl();
@@ -449,6 +451,10 @@ private:
 
 public:
 
+	GLint shaderProgram;
+    #define VERTEX_SHADER_PATH "../cursorShader.vert"
+    #define FRAGMENT_SHADER_PATH "../cursorShader.frag"
+	glm::vec3 v;
 	RiftApp() {
 		using namespace ovr;
 		_viewScaleDesc.HmdSpaceToWorldScaleInMeters = 1.0f;
@@ -483,6 +489,14 @@ protected:
 	}
 
 	void initGl() override {
+
+		// Load the shader program. Make sure you have the correct filepath up top
+		shaderProgram = LoadShaders(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
+
+		// Create a sphere object
+		//sphere = new Object("sphere.obj");
+		sphere = new Model("sphere.obj");
+
 		GlfwApp::initGl();
 
 		// Disable the v-sync for buffer swap
@@ -568,8 +582,8 @@ protected:
 		handStatus[0] = trackState.HandStatusFlags[0];
 		handStatus[1] = trackState.HandStatusFlags[1];
 		// Display status for debug purposes:
-		cerr << "handStatus[left]  = " << handStatus[ovrHand_Left] << endl;
-		cerr << "handStatus[right] = " << handStatus[ovrHand_Right] << endl;
+		//cerr << "handStatus[left]  = " << handStatus[ovrHand_Left] << endl;
+		//cerr << "handStatus[right] = " << handStatus[ovrHand_Right] << endl;
 
 		// Process controller position and orientation:
 		ovrPosef handPoses[2];  // These are position and orientation in meters in room coordinates, relative to tracking origin. Right-handed cartesian coordinates.
@@ -581,10 +595,32 @@ protected:
 		handPosition[0] = handPoses[0].Position;
 		handPosition[1] = handPoses[1].Position;
 		// Display positions for debug purposes:
-		cerr << "left hand position  = " << handPosition[ovrHand_Left].x << ", " << handPosition[ovrHand_Left].y << ", " << handPosition[ovrHand_Left].z << endl;
-		cerr << "right hand position = " << handPosition[ovrHand_Right].x << ", " << handPosition[ovrHand_Right].y << ", " << handPosition[ovrHand_Right].z << endl;
+		//cerr << "left hand position  = " << handPosition[ovrHand_Left].x << ", " << handPosition[ovrHand_Left].y << ", " << handPosition[ovrHand_Left].z << endl;
+		//cerr << "right hand position = " << handPosition[ovrHand_Right].x << ", " << handPosition[ovrHand_Right].y << ", " << handPosition[ovrHand_Right].z << endl;
 		//////
+		//double displayMidpointSeconds = ovr_GetPredictedDisplayTime(_session, frame);
+		//ovrTrackingState trackState = ovr_GetTrackingState(_session, displayMidpointSeconds, ovrTrue);
+		//ovrPosef         handPoses[2];
+		ovrInputState    inputState;
 
+		// Grab hand poses useful for rendering hand or controller representation
+		handPoses[ovrHand_Left] = trackState.HandPoses[ovrHand_Left].ThePose;
+		handPoses[ovrHand_Right] = trackState.HandPoses[ovrHand_Right].ThePose;
+
+		if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
+		{
+			if (inputState.Buttons & ovrButton_A)
+			{
+				// Handle A button being pressed
+				//cerr << "Ben Ochoa" << endl;
+			}
+			if (inputState.IndexTrigger[ovrHand_Left] > 0.5f)
+			{
+				// Handle hand grip...
+				cerr << "Ben Ochoa" << endl;
+			}
+		}
+		///////
 		ovrPosef eyePoses[2];
 		ovr_GetEyePoses(_session, frame, true, _viewScaleDesc.HmdToEyePose, eyePoses, &_sceneLayer.SensorSampleTime);
 
@@ -619,8 +655,6 @@ protected:
 		glBlitFramebuffer(0, 0, _mirrorSize.x, _mirrorSize.y, 0, _mirrorSize.y, _mirrorSize.x, 0, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
 	}
-
-	// Load model
 
 	virtual void renderScene(const glm::mat4 & projection, const glm::mat4 & headPose) = 0;
 };
@@ -669,8 +703,6 @@ namespace Attribute {
 		InstanceTransform = 5,
 	};
 }
-
-GLint shaderProgram;
 
 static const char * VERTEX_SHADER = R"SHADER(
 #version 410 core
@@ -779,15 +811,16 @@ public:
 	}
 
 	void render(const mat4 & projection, const mat4 & modelview) {
-		// Load the shader program. Make sure you have the correct filepath up top
-		shaderProgram = LoadShaders(VERTEX_SHADER, FRAGMENT_SHADER);
-
 		using namespace oglplus;
 		prog.Use();
 		Uniform<mat4>(prog, "ProjectionMatrix").Set(projection);
 		Uniform<mat4>(prog, "CameraMatrix").Set(modelview);
 		vao.Bind();
 		cube.Draw(instanceCount);
+
+		//GLuint shaderProgram = LoadShaders(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
+
+		//sphere->Render(projection, modelview, shaderProgram);
 	}
 };
 
@@ -809,7 +842,7 @@ protected:
 
 		glEnable(GL_DEPTH_TEST);
 		ovr_RecenterTrackingOrigin(_session);
-		cubeScene = std::shared_ptr<ColorCubeScene>(new ColorCubeScene());
+		cubeScene = std::shared_ptr<ColorCubeScene>(new ColorCubeScene());	
 	}
 
 	void shutdownGl() override {
@@ -818,11 +851,9 @@ protected:
 
 	void renderScene(const glm::mat4 & projection, const glm::mat4 & headPose) override {
 		cubeScene->render(projection, glm::inverse(headPose));
-
-		// Create a sphere object
-		sphere = new Object(string("../sphere.obj"));
+		
 		// draw sphere
-		sphere->draw(shaderProgram);
+		//sphere->Render(projection, glm::inverse(headPose), shaderProgram);
 	}
 };
 

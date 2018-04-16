@@ -1,39 +1,12 @@
-#version 330
+#version 410 core
 
-layout(std140) uniform Material{
-vec4 diffuse;
-vec4 ambient;
-vec4 specular;
-vec4 emissive;
-float shininess;
-int texCount;
-};
+in vec3 vertNormal;
+out vec4 fragColor;
 
-uniform sampler2D texUnit;
-
-in vec3 Normal;
-in vec2 TexCoord;
-out vec4 output;
-
-void main()
-{
-	vec4 color;
-	vec4 amb;
-	float intensity;
-	vec3 lightDir;
-	vec3 n;
-
-	lightDir = normalize(vec3(1.0, 1.0, 1.0));
-	n = normalize(Normal);
-	intensity = max(dot(lightDir, n), 0.0);
-
-	if (texCount == 0) {
-		color = diffuse;
-		amb = ambient;
-	}
-	else {
-		color = texture2D(texUnit, TexCoord);
-		amb = color * 0.33;
-	}
-	output = (color * intensity) + amb;
+void main(void) {
+    vec3 color = vertNormal;
+    if (!all(equal(color, abs(color)))) {
+        color = vec3(1.0) - abs(color);
+    }
+    fragColor = vec4(color, 1.0);
 }

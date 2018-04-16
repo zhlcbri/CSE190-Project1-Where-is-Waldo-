@@ -19,7 +19,7 @@ Object::Object(const string filepath/*const char *filepath*/)
 	// Create array object and buffers. Remember to delete your buffers when the object is destroyed!
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &NBO); // for normal coloring
+	//glGenBuffers(1, &NBO); // for normal coloring
 	glGenBuffers(1, &EBO);
 
 	glBindVertexArray(VAO);
@@ -33,8 +33,8 @@ Object::Object(const string filepath/*const char *filepath*/)
 	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0); // 6 * sizeof(float)
 
 	// Bind normals
-	glBindBuffer(GL_ARRAY_BUFFER, NBO);
-	glBufferData(GL_ARRAY_BUFFER, normalBuff.size() * sizeof(float) * 3, normalBuff.data(), GL_STATIC_DRAW);
+	//glBindBuffer(GL_ARRAY_BUFFER, NBO);
+	//glBufferData(GL_ARRAY_BUFFER, normalBuff.size() * sizeof(float) * 3, normalBuff.data(), GL_STATIC_DRAW);
 	//glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
 
 	//glEnableVertexAttribArray(1); // Enable the usage of layout location 1
@@ -85,7 +85,7 @@ bool Object::loadModel(const string file)
 
 void Object::draw(GLuint shaderProgram) {
 	// draw all meshes assigned to this node
-	for (unsigned int n = 0; n < modelNode->mNumMeshes; ++n) {
+	// (unsigned int n = 0; n < modelNode->mNumMeshes; ++n) {
 		// bind material uniform
 		//glBindBufferRange(GL_UNIFORM_BUFFER, materialUniLoc, myMeshes[nd->mMeshes[n]].uniformBlockIndex, 0, sizeof(struct MyMaterial));
 		// bind texture
@@ -93,14 +93,16 @@ void Object::draw(GLuint shaderProgram) {
 		// bind VAO
 		//glBindVertexArray(myMeshes[nd->mMeshes[n]].vao);
 		// draw
-		glDrawElements(GL_TRIANGLES, modelMesh[modelNode->mMeshes[n]].mNumFaces * 3, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, modelMesh[modelNode->mMeshes[n]].mNumFaces * 3, GL_UNSIGNED_INT, 0);
 
-	}
+	//}
 
 	// draw all children
 	/*for (unsigned int n = 0; n < modelNode->mNumChildren; ++n) {
 		modelNode->mChildren[n]
 	}*/
+
+	//glDrawElements(GL_TRIANGLES, (GLsizei)indexBuff.size(), GL_UNSIGNED_INT, 0);
 }
 
 
@@ -113,9 +115,9 @@ bool Object::assimpGetMeshData(const aiMesh *mesh) {
 		vertexBuff.push_back(mesh->mVertices[v].y);
 		vertexBuff.push_back(mesh->mVertices[v].z);
 
-		/*vertexBuff.push_back(mesh->mNormals[v].x);
+		vertexBuff.push_back(mesh->mNormals[v].x);
 		vertexBuff.push_back(mesh->mNormals[v].y);
-		vertexBuff.push_back(mesh->mNormals[v].z);*/
+		vertexBuff.push_back(mesh->mNormals[v].z);
 
 		if (mesh->HasTextureCoords(0)) {
 			vertexBuff.push_back(mesh->mTextureCoords[0][v].x);
@@ -133,11 +135,11 @@ bool Object::assimpGetMeshData(const aiMesh *mesh) {
 
 	}
 
-	for (unsigned int n = 0; n < mesh->mNumVertices; n++) {
+	/*for (unsigned int n = 0; n < mesh->mNumVertices; n++) {
 		normalBuff.push_back(mesh->mNormals[n].x);
 		normalBuff.push_back(mesh->mNormals[n].y);
 		normalBuff.push_back(mesh->mNormals[n].z);
-	}
+	}*/
 
 	for (unsigned int f = 0; f < mesh->mNumFaces; f++)
 	{
@@ -165,7 +167,7 @@ bool Object::processData()
 	// I raise all nodes tree to the root level 
 	while (repeat)
 	{
-		for (unsigned int a = 0; a<nodeBuff.size(); a++)
+		for (unsigned int a = 0; a < nodeBuff.size(); a++)
 		{
 			modelNode = nodeBuff.at(a);
 			if (modelNode->mNumChildren > 0)

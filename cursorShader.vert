@@ -1,23 +1,17 @@
-#version 330
+#version 410 core
 
-layout(std140) uniform Matrices{
+uniform mat4 ProjectionMatrix = mat4(1);
+uniform mat4 CameraMatrix = mat4(1);
 
-mat4 projMatrix;
-mat4 viewMatrix;
-mat4 modelMatrix;
-};
+layout(location = 0) in vec4 Position;
+layout(location = 2) in vec3 Normal;
+layout(location = 5) in mat4 InstanceTransform;
 
-in vec3 position;
-in vec3 normal;
-in vec2 texCoord;
+out vec3 vertNormal;
 
-out vec4 vertexPos;
-out vec2 TexCoord;
-out vec3 Normal;
-
-void main()
-{
-	Normal = normalize(vec3(viewMatrix * modelMatrix * vec4(normal, 0.0)));
-	TexCoord = vec2(texCoord);
-	gl_Position = projMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+void main(void) {
+   mat4 ViewXfm = CameraMatrix * InstanceTransform;
+   //mat4 ViewXfm = CameraMatrix;
+   vertNormal = Normal;
+   gl_Position = ProjectionMatrix * ViewXfm * Position;
 }
