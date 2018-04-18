@@ -45,6 +45,9 @@ public:
 	{
 		for (unsigned int i = 0; i < meshes.size(); i++)
 			// meshes[i].Draw(shader);
+
+			// setupMesh()?
+
 			meshes[i].Draw(shaderProgram);
 	}
 
@@ -124,6 +127,7 @@ private:
 			vector.y = mesh->mNormals[i].y;
 			vector.z = mesh->mNormals[i].z;
 			vertex.Normal = vector;
+			
 		}
 		// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++)

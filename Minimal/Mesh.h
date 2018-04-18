@@ -62,6 +62,9 @@ public:
 	// void Draw(shader shader)
 	void Draw(GLuint shaderProgram)
 	{
+		// setup mesh
+		// setupMesh();
+
 		// draw mesh
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);

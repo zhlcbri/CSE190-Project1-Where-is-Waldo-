@@ -490,14 +490,14 @@ protected:
 
 	void initGl() override {
 
+		GlfwApp::initGl();
+
 		// Load the shader program. Make sure you have the correct filepath up top
 		shaderProgram = LoadShaders(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
 
 		// Create a sphere object
 		//sphere = new Object("sphere.obj");
 		sphere = new Model("sphere.obj");
-
-		GlfwApp::initGl();
 
 		// Disable the v-sync for buffer swap
 		glfwSwapInterval(0);
@@ -554,6 +554,8 @@ protected:
 			FAIL("Could not create mirror texture");
 		}
 		glGenFramebuffers(1, &_mirrorFbo);
+
+		//sphere->Draw(shaderProgram); //
 	}
 
 	void onKey(int key, int scancode, int action, int mods) override {
@@ -657,6 +659,8 @@ protected:
 	}
 
 	virtual void renderScene(const glm::mat4 & projection, const glm::mat4 & headPose) = 0;
+
+	// Bind sphere's VAO... here
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -853,7 +857,7 @@ protected:
 		cubeScene->render(projection, glm::inverse(headPose));
 		
 		// draw sphere
-		//sphere->Render(projection, glm::inverse(headPose), shaderProgram);
+		sphere->Render(projection, glm::inverse(headPose), shaderProgram);
 	}
 };
 
