@@ -11,7 +11,7 @@
 #include <GL/glew.h>
 #endif
 #include <GLFW/glfw3.h>
-#include "shader.h"
+#include "MyShader.h"
 
 class GameManager
 {

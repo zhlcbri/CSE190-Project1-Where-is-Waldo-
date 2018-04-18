@@ -18,12 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -33,18 +27,24 @@
     <None Include="..\cursorShader.vert">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="regShader.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="hlShader.frag">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
+    <ClInclude Include="MyShader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -130,20 +130,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cursorShader.frag" />
     <None Include="..\cursorShader.vert" />
+    <None Include="hlShader.frag" />
     <None Include="packages.config" />
+    <None Include="regShader.frag" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="MyShader.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

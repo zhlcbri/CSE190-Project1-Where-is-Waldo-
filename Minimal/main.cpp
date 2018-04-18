@@ -44,9 +44,9 @@ limitations under the License.
 #include <glm/gtx/quaternion.hpp>
 
 //#include "Object.h"
-#include "Shader.h"
+#include "MyShader.h"
 #include "Model.h"
-
+glm::vec3 hand;
 // Import the most commonly used types into the default namespace
 using glm::ivec3;
 using glm::ivec2;
@@ -68,7 +68,7 @@ using namespace std;
 #include <GL/glew.h>
 
 //Object * sphere; // cursor sphere
-Model * sphere;
+//Model * sphere;
 
 bool checkFramebufferStatus(GLenum target = GL_FRAMEBUFFER) {
 	GLuint status = glCheckFramebufferStatus(target);
@@ -158,6 +158,7 @@ void glDebugCallbackHandler(GLenum source, GLenum type, GLuint id, GLenum severi
 
 #include <GLFW/glfw3.h>
 
+//#include <float.h>
 namespace glfw {
 	inline GLFWwindow * createWindow(const uvec2 & size, const ivec2 & position = ivec2(INT_MIN)) {
 
@@ -181,8 +182,10 @@ protected:
 	ivec2 windowPosition;
 	GLFWwindow * window{ nullptr };
 	unsigned int frame{ 0 };
+	
 
 public:
+	
 	GlfwApp() {
 		// Initialize the GLFW system for creating and positioning windows
 		if (!glfwInit()) {
@@ -292,7 +295,9 @@ protected:
 		}
 	}
 
-	virtual void update() {}
+	virtual void update() {
+		
+	}
 
 	virtual void onMouseButton(int button, int action, int mods) {}
 
@@ -345,7 +350,7 @@ namespace ovr {
 	inline mat4 toGlm(const ovrFovPort & fovport, float nearPlane = 0.01f, float farPlane = 10000.0f) {
 		return toGlm(ovrMatrix4f_Projection(fovport, nearPlane, farPlane, true));
 	}
-
+	
 	inline vec3 toGlm(const ovrVector3f & ov) {
 		return glm::make_vec3(&ov.x);
 	}
@@ -450,11 +455,7 @@ private:
 	uvec2 _mirrorSize;
 
 public:
-
-	GLint shaderProgram;
-    #define VERTEX_SHADER_PATH "../cursorShader.vert"
-    #define FRAGMENT_SHADER_PATH "../cursorShader.frag"
-	glm::vec3 v;
+	
 	RiftApp() {
 		using namespace ovr;
 		_viewScaleDesc.HmdSpaceToWorldScaleInMeters = 1.0f;
@@ -483,21 +484,18 @@ public:
 		_mirrorSize /= 4;
 	}
 
+	// boolean to detect whether game has started already
+	bool game_started = false;
+	double start_time = 0.0;
+
 protected:
 	GLFWwindow * createRenderingTarget(uvec2 & outSize, ivec2 & outPosition) override {
 		return glfw::createWindow(_mirrorSize);
 	}
 
 	void initGl() override {
-
+		
 		GlfwApp::initGl();
-
-		// Load the shader program. Make sure you have the correct filepath up top
-		shaderProgram = LoadShaders(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
-
-		// Create a sphere object
-		//sphere = new Object("sphere.obj");
-		sphere = new Model("sphere.obj");
 
 		// Disable the v-sync for buffer swap
 		glfwSwapInterval(0);
@@ -554,8 +552,6 @@ protected:
 			FAIL("Could not create mirror texture");
 		}
 		glGenFramebuffers(1, &_mirrorFbo);
-
-		//sphere->Draw(shaderProgram); //
 	}
 
 	void onKey(int key, int scancode, int action, int mods) override {
@@ -583,6 +579,7 @@ protected:
 		unsigned int handStatus[2];
 		handStatus[0] = trackState.HandStatusFlags[0];
 		handStatus[1] = trackState.HandStatusFlags[1];
+
 		// Display status for debug purposes:
 		//cerr << "handStatus[left]  = " << handStatus[ovrHand_Left] << endl;
 		//cerr << "handStatus[right] = " << handStatus[ovrHand_Right] << endl;
@@ -596,6 +593,9 @@ protected:
 		ovrVector3f handPosition[2];
 		handPosition[0] = handPoses[0].Position;
 		handPosition[1] = handPoses[1].Position;
+		hand.x = handPosition[ovrHand_Left].x;
+		hand.y = handPosition[ovrHand_Left].y;
+		hand.z = handPosition[ovrHand_Left].z;
 		// Display positions for debug purposes:
 		//cerr << "left hand position  = " << handPosition[ovrHand_Left].x << ", " << handPosition[ovrHand_Left].y << ", " << handPosition[ovrHand_Left].z << endl;
 		//cerr << "right hand position = " << handPosition[ovrHand_Right].x << ", " << handPosition[ovrHand_Right].y << ", " << handPosition[ovrHand_Right].z << endl;
@@ -609,19 +609,26 @@ protected:
 		handPoses[ovrHand_Left] = trackState.HandPoses[ovrHand_Left].ThePose;
 		handPoses[ovrHand_Right] = trackState.HandPoses[ovrHand_Right].ThePose;
 
-		if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
-		{
-			if (inputState.Buttons & ovrButton_A)
+		// Pull trigger to start the game and timer
+		if (!game_started) {
+			if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
 			{
-				// Handle A button being pressed
-				//cerr << "Ben Ochoa" << endl;
+				if (inputState.IndexTrigger[ovrHand_Left] > 0.5f) // also check timer status here
+				{
+					start_time = ovr_GetTimeInSeconds();
+					game_started = true;
+				}
 			}
-			if (inputState.IndexTrigger[ovrHand_Left] > 0.5f)
-			{
-				// Handle hand grip...
-				cerr << "Ben Ochoa" << endl;
+		}	
+
+		// If game has started, update current time every frame
+		if (game_started) {
+			double curr_time = ovr_GetTimeInSeconds();
+			if (curr_time - start_time <= 60.0) {
+				// cout << "time passed: " << curr_time - start_time << endl;
 			}
 		}
+
 		///////
 		ovrPosef eyePoses[2];
 		ovr_GetEyePoses(_session, frame, true, _viewScaleDesc.HmdToEyePose, eyePoses, &_sceneLayer.SensorSampleTime);
@@ -642,7 +649,7 @@ protected:
 			const auto& vp = _sceneLayer.Viewport[eye];
 			glViewport(vp.Pos.x, vp.Pos.y, vp.Size.w, vp.Size.h);
 			_sceneLayer.RenderPose[eye] = eyePoses[eye];
-			renderScene(_eyeProjections[eye], ovr::toGlm(eyePoses[eye]));
+			renderScene(_eyeProjections[eye], ovr::toGlm(eyePoses[eye]));//p,v*m
 		});
 		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 0, 0);
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
@@ -659,8 +666,6 @@ protected:
 	}
 
 	virtual void renderScene(const glm::mat4 & projection, const glm::mat4 & headPose) = 0;
-
-	// Bind sphere's VAO... here
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -746,85 +751,133 @@ void main(void) {
 // a class for encapsulating building and rendering an RGB cube
 struct ColorCubeScene {
 
-	// Program
-	oglplus::shapes::ShapeWrapper cube;
-	oglplus::Program prog;
-	oglplus::VertexArray vao;
-	GLuint instanceCount;
-	oglplus::Buffer instances;
+	//
 
-	// VBOs for the cube's vertices and normals
+	//MyShader cursor_shader = new MyShader(cursor_vert, cursor_frag);
+	//MyShader cursor_shader(cursor_vert, cursor_frag);
 
-	const unsigned int GRID_SIZE{ 5 };
 
 public:
-	ColorCubeScene() : cube({ "Position", "Normal" }, oglplus::shapes::Cube()) {
-		using namespace oglplus;
-		try {
-			// attach the shaders to the program
-			prog.AttachShader(
-				FragmentShader()
-				.Source(GLSLSource(String(FRAGMENT_SHADER)))
-				.Compile()
-			);
-			prog.AttachShader(
-				VertexShader()
-				.Source(GLSLSource(String(VERTEX_SHADER)))
-				.Compile()
-			);
-			prog.Link();
+	const char* cursor_vert;
+	const char* cursor_frag;
+	MyShader* cursor_shader;
+
+	const char* reg_frag;
+	MyShader* reg_shader;
+
+	const char* hl_frag;
+	MyShader* hl_shader;
+
+	Model * sphere;
+	vector<Model*> sphereVec;
+
+	ColorCubeScene(){
+		sphere = new Model("sphere.obj");
+	
+		cursor_frag = "../cursorShader.frag";
+		cursor_vert = "../cursorShader.vert";
+
+		reg_frag = "../regShader.frag";
+		hl_frag = "../hlShader.frag";
+		
+		cursor_shader = new MyShader(cursor_vert, cursor_frag);
+		reg_shader = new MyShader(cursor_vert, reg_frag);
+		hl_shader = new MyShader(cursor_vert, hl_frag);
+
+		// create a 3D array of spheres
+		sphereVec = createModelArray("sphere.obj", 125);
+	}
+
+	~ColorCubeScene() {
+		delete(sphere);
+		delete(cursor_shader);
+		// delete array
+		for (Model * m : sphereVec) {
+			delete(m);
 		}
-		catch (ProgramBuildError & err) {
-			FAIL((const char*)err.what());
-		}
+	}
 
-		// link and use it
-		prog.Use();
-
-		vao = cube.VAOForProgram(prog);
-		vao.Bind();
-		// Create a cube of cubes
-		{
-			std::vector<mat4> instance_positions;
-			for (unsigned int z = 0; z < GRID_SIZE; ++z) {
-				for (unsigned int y = 0; y < GRID_SIZE; ++y) {
-					for (unsigned int x = 0; x < GRID_SIZE; ++x) {
-						int xpos = (x - (GRID_SIZE / 2)) * 2;
-						int ypos = (y - (GRID_SIZE / 2)) * 2;
-						int zpos = (z - (GRID_SIZE / 2)) * 2;
-						vec3 relativePosition = vec3(xpos, ypos, zpos);
-						if (relativePosition == vec3(0)) {
-							continue;
-						}
-						instance_positions.push_back(glm::translate(glm::mat4(1.0f), relativePosition));
-					}
-				}
-			}
-
-			Context::Bound(Buffer::Target::Array, instances).Data(instance_positions);
-			instanceCount = (GLuint)instance_positions.size();
-			int stride = sizeof(mat4);
-			for (int i = 0; i < 4; ++i) {
-				VertexArrayAttrib instance_attr(prog, Attribute::InstanceTransform + i);
-				size_t offset = sizeof(vec4) * i;
-				instance_attr.Pointer(4, DataType::Float, false, stride, (void*)offset);
-				instance_attr.Divisor(1);
-				instance_attr.Enable();
-			}
+	// function to count time
+	void timer(double old_time, double new_time) {
+		if (new_time - old_time <= 60) {
+			cout << new_time - old_time << endl;
 		}
 	}
 
 	void render(const mat4 & projection, const mat4 & modelview) {
-		using namespace oglplus;
-		prog.Use();
-		Uniform<mat4>(prog, "ProjectionMatrix").Set(projection);
-		Uniform<mat4>(prog, "CameraMatrix").Set(modelview);
-		vao.Bind();
-		cube.Draw(instanceCount);
 
-		//GLuint shaderProgram = LoadShaders(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
+		// scale and draw cursor sphere
+		//cursor_shader->use();
+		//cursor_shader->setMat4("projection", projection);
+		//cursor_shader->setMat4("view", modelview);
 
-		//sphere->Render(projection, modelview, shaderProgram);
+		hl_shader->use();
+		hl_shader->setMat4("projection", projection);
+		hl_shader->setMat4("view", modelview);
+
+		glm::mat4 T_in = glm::translate(glm::mat4(1.0f), -hand);
+		glm::mat4 T = glm::translate(glm::mat4(1.0f), hand);
+		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.07,0.07,0.07));
+		//glm::mat4 S = glm::mat4(1.0f);
+		
+		//cursor_shader->setMat4("model",T*S*T_in);
+		//sphere->Draw(*cursor_shader);
+		hl_shader->setMat4("model", T*S*T_in);
+		sphere->Draw(*hl_shader);
+		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, 5);
+
+		// draw these spheres
+		//reg_shader->use();
+		//drawModelMatrix(sphereVec, modelview, projection, reg_shader, 5); // change shader
+	}
+
+	int genRandomNum(int lo, int hi) {
+		int randomNum = (rand() % (hi-lo)) + lo;//
+		return randomNum;
+
+	}
+
+
+	vector<Model*> createModelArray(string const &path, int count) {
+		vector<Model*> modelVec;
+		for (int i = 0; i < count; i++) {
+			Model * newModel = new Model(path);
+			modelVec.push_back(newModel);
+		}
+		return modelVec;
+	}
+
+	void drawModelMatrix(vector<Model*> modelVec, mat4 V, mat4 P, MyShader* shader, int count) {
+
+		shader->use();
+		//shader->setMat4("model", M);
+		shader->setMat4("view", V);
+		shader->setMat4("projection", P);
+		int i = 0; // model's index in vector
+		float space = 0.4f;
+		
+		for (int x = 1.0; x <= count; x++) {
+			// check if count is out of vector bound
+			if (i > modelVec.size() - 1) break;
+
+			for (int y = 0; y < count; y++) {
+
+				for (int z = 0; z < count; z++) {
+
+					mat4 tempM = translate(mat4(1.0f), vec3((float)x * space, (float)y * space, (float)z * space));
+					shader->setMat4("model", tempM);
+
+					// if current vector element is not null, draw it using tempM
+					if (modelVec.at(i) != nullptr) {
+						modelVec.at(i)->Draw(*shader);
+						i++;
+					}
+					else {
+						cout << "modelVec.at(" << i << ") " << "is nullptr!" << endl;
+					}
+				}
+			}
+		}
 	}
 };
 
@@ -855,9 +908,6 @@ protected:
 
 	void renderScene(const glm::mat4 & projection, const glm::mat4 & headPose) override {
 		cubeScene->render(projection, glm::inverse(headPose));
-		
-		// draw sphere
-		sphere->Render(projection, glm::inverse(headPose), shaderProgram);
 	}
 };
 
