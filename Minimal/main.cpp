@@ -47,6 +47,17 @@ limitations under the License.
 #include "MyShader.h"
 #include "Model.h"
 glm::vec3 hand;
+int gen_random = 0;
+// game timer and logic
+bool game_started = false;
+double start_time = 0.0;
+int randomNum = 0;
+int touch = 0;
+// change color of spheres
+int first_hl = 0;
+glm::vec3 s_position;
+glm::vec3 hl_position;
+int point = 0;
 // Import the most commonly used types into the default namespace
 using glm::ivec3;
 using glm::ivec2;
@@ -58,6 +69,11 @@ using glm::vec3;
 using glm::vec4;
 using glm::quat;
 
+// Avatar support
+//#define APP_ID "1489136784528710"
+//#define STB_IMAGE_IMPLEMENTATION
+//#include "stb_image.h"
+
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -66,9 +82,6 @@ using namespace std;
 //
 
 #include <GL/glew.h>
-
-//Object * sphere; // cursor sphere
-//Model * sphere;
 
 bool checkFramebufferStatus(GLenum target = GL_FRAMEBUFFER) {
 	GLuint status = glCheckFramebufferStatus(target);
@@ -163,7 +176,7 @@ namespace glfw {
 	inline GLFWwindow * createWindow(const uvec2 & size, const ivec2 & position = ivec2(INT_MIN)) {
 
 		GLFWwindow * window = glfwCreateWindow(size.x, size.y, "glfw", nullptr, nullptr);
-		
+
 		if (!window) {
 			FAIL("Unable to create rendering window");
 		}
@@ -182,10 +195,10 @@ protected:
 	ivec2 windowPosition;
 	GLFWwindow * window{ nullptr };
 	unsigned int frame{ 0 };
-	
+
 
 public:
-	
+
 	GlfwApp() {
 		// Initialize the GLFW system for creating and positioning windows
 		if (!glfwInit()) {
@@ -220,7 +233,7 @@ public:
 			glfwPollEvents();
 			update();
 			draw();
-			finishFrame(); 
+			finishFrame();
 		}
 
 		shutdownGl();
@@ -296,7 +309,7 @@ protected:
 	}
 
 	virtual void update() {
-		
+
 	}
 
 	virtual void onMouseButton(int button, int action, int mods) {}
@@ -330,6 +343,9 @@ private:
 
 #include <OVR_CAPI.h>
 #include <OVR_CAPI_GL.h>
+// Avatar support
+#include <OVR_Avatar.h>
+#include <OVR_Platform.h>
 
 namespace ovr {
 
@@ -350,7 +366,7 @@ namespace ovr {
 	inline mat4 toGlm(const ovrFovPort & fovport, float nearPlane = 0.01f, float farPlane = 10000.0f) {
 		return toGlm(ovrMatrix4f_Projection(fovport, nearPlane, farPlane, true));
 	}
-	
+
 	inline vec3 toGlm(const ovrVector3f & ov) {
 		return glm::make_vec3(&ov.x);
 	}
@@ -417,6 +433,8 @@ protected:
 	ovrSession _session;
 	ovrHmdDesc _hmdDesc;
 	ovrGraphicsLuid _luid;
+	// avatar support
+	//ovrAvatar* _avatar;
 
 public:
 	RiftManagerApp() {
@@ -425,12 +443,16 @@ public:
 		}
 
 		_hmdDesc = ovr_GetHmdDesc(_session);
+		// avatar support
+		//ovr_PlatformInitializeWindows(APP_ID);
+		//ovrAvatar_Initialize(APP_ID);
 	}
 
 	~RiftManagerApp() {
 		ovr_Destroy(_session);
 		_session = nullptr;
 	}
+
 };
 
 class RiftApp : public GlfwApp, public RiftManagerApp {
@@ -455,7 +477,7 @@ private:
 	uvec2 _mirrorSize;
 
 public:
-	
+
 	RiftApp() {
 		using namespace ovr;
 		_viewScaleDesc.HmdSpaceToWorldScaleInMeters = 1.0f;
@@ -485,8 +507,7 @@ public:
 	}
 
 	// boolean to detect whether game has started already
-	bool game_started = false;
-	double start_time = 0.0;
+
 
 protected:
 	GLFWwindow * createRenderingTarget(uvec2 & outSize, ivec2 & outPosition) override {
@@ -494,7 +515,7 @@ protected:
 	}
 
 	void initGl() override {
-		
+
 		GlfwApp::initGl();
 
 		// Disable the v-sync for buffer swap
@@ -611,22 +632,49 @@ protected:
 
 		// Pull trigger to start the game and timer
 		if (!game_started) {
+			if (first_hl == 0) {
+				randomNum = (rand() % 125);//
+				first_hl = 1;
+			}
+
 			if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
 			{
 				if (inputState.IndexTrigger[ovrHand_Left] > 0.5f) // also check timer status here
 				{
 					start_time = ovr_GetTimeInSeconds();
-					game_started = true;
+					if (game_started == false)
+						game_started = true;
+					//flag = 1;
 				}
 			}
-		}	
+		}
 
 		// If game has started, update current time every frame
 		if (game_started) {
+			if (glm::distance(hand, hl_position) < 0.3) { // TODO re-calculate value
+				if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
+				{
+					if (inputState.IndexTrigger[ovrHand_Left] > 0.5f) {
+						gen_random = 1;
+						point++;
+					}
+
+				}
+			}
+			if (gen_random == 1)
+				randomNum = (rand() % 125);//
+
 			double curr_time = ovr_GetTimeInSeconds();
-			if (curr_time - start_time <= 60.0) {
+			if (curr_time - start_time <= 30.0) { // TODO change to 60
+
 				// cout << "time passed: " << curr_time - start_time << endl;
 			}
+			else {
+				game_started = false;
+				cout << "points are " << point << endl;
+			}
+			//game_started = false;
+			//gen_random = 0;
 		}
 
 		///////
@@ -751,12 +799,6 @@ void main(void) {
 // a class for encapsulating building and rendering an RGB cube
 struct ColorCubeScene {
 
-	//
-
-	//MyShader cursor_shader = new MyShader(cursor_vert, cursor_frag);
-	//MyShader cursor_shader(cursor_vert, cursor_frag);
-
-
 public:
 	const char* cursor_vert;
 	const char* cursor_frag;
@@ -769,28 +811,34 @@ public:
 	MyShader* hl_shader;
 
 	Model * sphere;
+	Model * sphere_tex;
 	vector<Model*> sphereVec;
+	vector<Model*> sphereVec_tex;
 
-	ColorCubeScene(){
+	ColorCubeScene() {
 		sphere = new Model("sphere.obj");
-	
+		sphere_tex = new Model("sphere_2.obj");
+
 		cursor_frag = "../cursorShader.frag";
 		cursor_vert = "../cursorShader.vert";
 
 		reg_frag = "../regShader.frag";
 		hl_frag = "../hlShader.frag";
-		
+
 		cursor_shader = new MyShader(cursor_vert, cursor_frag);
 		reg_shader = new MyShader(cursor_vert, reg_frag);
 		hl_shader = new MyShader(cursor_vert, hl_frag);
 
 		// create a 3D array of spheres
 		sphereVec = createModelArray("sphere.obj", 125);
+		sphereVec_tex = createModelArray("sphere_2.obj", 125);
 	}
 
 	~ColorCubeScene() {
 		delete(sphere);
 		delete(cursor_shader);
+		delete(reg_shader);
+		delete(hl_shader);
 		// delete array
 		for (Model * m : sphereVec) {
 			delete(m);
@@ -806,33 +854,30 @@ public:
 
 	void render(const mat4 & projection, const mat4 & modelview) {
 
-		// scale and draw cursor sphere
-		//cursor_shader->use();
-		//cursor_shader->setMat4("projection", projection);
-		//cursor_shader->setMat4("view", modelview);
-
+		// Pass in P and V to vertex shader
 		hl_shader->use();
 		hl_shader->setMat4("projection", projection);
 		hl_shader->setMat4("view", modelview);
 
 		glm::mat4 T_in = glm::translate(glm::mat4(1.0f), -hand);
 		glm::mat4 T = glm::translate(glm::mat4(1.0f), hand);
-		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.07,0.07,0.07));
+		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.05, 0.05, 0.05));
 		//glm::mat4 S = glm::mat4(1.0f);
-		
-		//cursor_shader->setMat4("model",T*S*T_in);
-		//sphere->Draw(*cursor_shader);
+
+		// Pass in M and draw cursor
 		hl_shader->setMat4("model", T*S*T_in);
 		sphere->Draw(*hl_shader);
-		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, 5);
+		//sphere_tex->Draw(*hl_shader);
 
-		// draw these spheres
-		//reg_shader->use();
-		//drawModelMatrix(sphereVec, modelview, projection, reg_shader, 5); // change shader
+		// Draw the 3D array of spheres
+		cursor_shader->use();
+		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, hl_shader, 5); // change shader
+		drawModelMatrix(sphereVec_tex, modelview, projection, cursor_shader, hl_shader, 5);
+
 	}
 
 	int genRandomNum(int lo, int hi) {
-		int randomNum = (rand() % (hi-lo)) + lo;//
+		int randomNum = (rand() % (hi - lo)) + lo;//
 		return randomNum;
 
 	}
@@ -847,29 +892,51 @@ public:
 		return modelVec;
 	}
 
-	void drawModelMatrix(vector<Model*> modelVec, mat4 V, mat4 P, MyShader* shader, int count) {
+	void drawModelMatrix(vector<Model*> modelVec, mat4 V, mat4 P, MyShader* shader, MyShader * hshader, int count) {
 
 		shader->use();
 		//shader->setMat4("model", M);
 		shader->setMat4("view", V);
 		shader->setMat4("projection", P);
 		int i = 0; // model's index in vector
-		float space = 0.4f;
-		
-		for (int x = 1.0; x <= count; x++) {
+		float space = 0.5f;
+
+		for (float x = 0; x < count; x += 1.0f) {
 			// check if count is out of vector bound
 			if (i > modelVec.size() - 1) break;
 
-			for (int y = 0; y < count; y++) {
+			for (float y = 0; y < count; y += 1.0f) {
 
-				for (int z = 0; z < count; z++) {
-
-					mat4 tempM = translate(mat4(1.0f), vec3((float)x * space, (float)y * space, (float)z * space));
+				for (float z = 0; z < count; z += 1.0f) {
+					//don not rotate now
+					s_position = vec3(x * space - 1.0f, y * space - 1.0f, -(-z * space - 0.3f));
+					mat4 tempM = translate(glm::mat4(1.0f), s_position);
 					shader->setMat4("model", tempM);
 
 					// if current vector element is not null, draw it using tempM
 					if (modelVec.at(i) != nullptr) {
-						modelVec.at(i)->Draw(*shader);
+						if (i == randomNum && game_started) {
+							hl_position = s_position;
+							//cout << i<<" = "<<randomNum<< endl;
+							hshader->use();
+							//shader->setMat4("model", M);
+							hshader->setMat4("view", V);
+							hshader->setMat4("projection", P);
+							hshader->setMat4("model", tempM);
+							modelVec.at(i)->Draw(*hshader);
+							if (gen_random == 1) {
+								gen_random = 0;
+							}
+						}
+
+						else {
+							shader->use();
+							shader->setMat4("model", tempM);
+							shader->setMat4("view", V);
+							shader->setMat4("projection", P);
+							modelVec.at(i)->Draw(*shader);
+						}
+
 						i++;
 					}
 					else {
@@ -899,7 +966,7 @@ protected:
 
 		glEnable(GL_DEPTH_TEST);
 		ovr_RecenterTrackingOrigin(_session);
-		cubeScene = std::shared_ptr<ColorCubeScene>(new ColorCubeScene());	
+		cubeScene = std::shared_ptr<ColorCubeScene>(new ColorCubeScene());
 	}
 
 	void shutdownGl() override {
@@ -919,12 +986,15 @@ int main(int argc, char** argv) {
 		if (!OVR_SUCCESS(ovr_Initialize(nullptr))) {
 			FAIL("Failed to initialize the Oculus SDK");
 		}
+
+
 		result = ExampleApp().run();
 	}
 	catch (std::exception & error) {
 		OutputDebugStringA(error.what());
 		std::cerr << error.what() << std::endl;
 	}
+
 	ovr_Shutdown();
 	return result;
 }

@@ -18,6 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\OVRPlatformSDK_v1.24.0\Windows\OVR_PlatformLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -33,6 +36,7 @@
     <None Include="hlShader.frag">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\hlShader.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyShader.h">
