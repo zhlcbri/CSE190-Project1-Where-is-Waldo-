@@ -45,6 +45,9 @@ public:
 	vector<Texture> textures;
 	unsigned int VAO;
 
+	const char* tex_waldo_path;
+	GLuint tex_waldo;
+
 	/*  Functions  */
 	// constructor
 	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
@@ -55,6 +58,58 @@ public:
 
 		// now that we have all the required data, set the vertex buffers and its attribute pointers.
 		setupMesh();
+
+		tex_waldo_path = "waldo.ppm";
+		tex_waldo = loadTexture(tex_waldo_path);
+	}
+
+	GLuint loadTexture(const char *textureFile) {
+		unsigned int textureID;
+		glGenTextures(1, &textureID);
+
+		int width, height, nrComponents;
+		unsigned char *data = stbi_load(textureFile, &width, &height, &nrComponents, 0);
+
+		if (data)
+		{
+			//cout << "Texture successfully loaded at path: " << textureFile << endl;
+
+			GLenum format;
+			if (nrComponents == 1) {
+				//cout << "nrComponents = 1" << endl; // debug
+				format = GL_RED;
+			}
+			else if (nrComponents == 3) {
+				//cout << "nrComponents = 3" << endl; // debug; it prints
+				format = GL_RGB;
+			}
+			else if (nrComponents == 4) {
+				//cout << "nrComponents = 4" << endl; // debug
+				format = GL_RGBA;
+			}
+
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			// Enable below two lines if turn off mipmap
+			/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, GL_TEXTURE_MAX_LEVEL);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD, GL_TEXTURE_MAX_LOD);*/
+
+			stbi_image_free(data);
+		}
+		else
+		{
+			std::cout << "Texture failed to load at path: " << textureFile << std::endl;
+			stbi_image_free(data);
+		}
+
+		return textureID;
 	}
 
 	// render the mesh
@@ -80,8 +135,8 @@ public:
 				number = std::to_string(normalNr++); // transfer unsigned int to stream
 			else if (name == "texture_height")
 				number = std::to_string(heightNr++); // transfer unsigned int to stream
-
 													 // now set the sampler to the correct texture unit
+
 			glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
 			// and finally bind the texture
 			glBindTexture(GL_TEXTURE_2D, textures[i].id);
@@ -94,6 +149,21 @@ public:
 
 		// always good practice to set everything back to defaults once configured.
 		glActiveTexture(GL_TEXTURE0);
+	}
+
+	void DrawWithTex(MyShader shader/*, GLuint texture, GLchar* const &samplePos*/)
+	{
+		glBindVertexArray(VAO);
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, tex_waldo);
+		glUniform1i(glGetUniformLocation(shader.ID, "texture_0"), 0);
+		
+		glDrawElements(GL_TRIANGLE_STRIP, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+
+		// always good practice to set everything back to defaults once configured.
+		//glActiveTexture(GL_TEXTURE0);
 	}
 
 private:

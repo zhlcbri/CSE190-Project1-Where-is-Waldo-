@@ -800,20 +800,33 @@ void main(void) {
 struct ColorCubeScene {
 
 public:
+	// cursor shaders
 	const char* cursor_vert;
 	const char* cursor_frag;
 	MyShader* cursor_shader;
 
+	// regular shaders
 	const char* reg_frag;
 	MyShader* reg_shader;
 
+	// highlight shaders
 	const char* hl_frag;
 	MyShader* hl_shader;
 
+	// waldo shaders
+	const char* waldo_vert;
+	const char* waldo_frag;
+	MyShader* waldo_shader;
+
+	// models and their vectors
 	Model * sphere;
 	Model * sphere_tex;
 	vector<Model*> sphereVec;
 	vector<Model*> sphereVec_tex;
+
+	// texture file paths
+	const char* tex_waldo_path;
+	GLuint tex_waldo;
 
 	ColorCubeScene() {
 		sphere = new Model("sphere.obj");
@@ -825,13 +838,22 @@ public:
 		reg_frag = "../regShader.frag";
 		hl_frag = "../hlShader.frag";
 
+		waldo_frag = "waldoShader.frag";
+		waldo_vert = "waldoShader.vert";
+
 		cursor_shader = new MyShader(cursor_vert, cursor_frag);
 		reg_shader = new MyShader(cursor_vert, reg_frag);
 		hl_shader = new MyShader(cursor_vert, hl_frag);
+		waldo_shader = new MyShader(waldo_vert, waldo_frag);
 
 		// create a 3D array of spheres
 		sphereVec = createModelArray("sphere.obj", 125);
 		sphereVec_tex = createModelArray("sphere_2.obj", 125);
+
+		// specify texture file path
+		//tex_waldo_path = "../waldo.jpg";
+		tex_waldo_path = "waldo.ppm";
+		tex_waldo = loadTexture(tex_waldo_path);
 	}
 
 	~ColorCubeScene() {
@@ -843,6 +865,7 @@ public:
 		for (Model * m : sphereVec) {
 			delete(m);
 		}
+		// delete all char* too
 	}
 
 	// function to count time
@@ -855,7 +878,7 @@ public:
 	void render(const mat4 & projection, const mat4 & modelview) {
 
 		// Pass in P and V to vertex shader
-		hl_shader->use();
+		//hl_shader->use();
 		hl_shader->setMat4("projection", projection);
 		hl_shader->setMat4("view", modelview);
 
@@ -871,9 +894,93 @@ public:
 
 		// Draw the 3D array of spheres
 		cursor_shader->use();
-		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, hl_shader, 5); // change shader
-		drawModelMatrix(sphereVec_tex, modelview, projection, cursor_shader, hl_shader, 5);
+		cursor_shader->setMat4("projection", projection);
+		cursor_shader->setMat4("view", modelview);
 
+		float space = 0.5f;
+		s_position = vec3(1 * space - 1.0f, 1 * space - 1.0f, (1 * space - 1.0f));
+		mat4 tempM = translate(glm::mat4(1.0f), s_position);
+		cursor_shader->setMat4("model", tempM);
+
+
+		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, hl_shader, 5); // change shader
+	    drawModelMatrix(sphereVec_tex, modelview, projection, cursor_shader, hl_shader, 5);
+
+		// try draw sphere with waldo texture
+		//waldo_shader->use();
+		//waldo_shader->setMat4("projection", projection);
+		//waldo_shader->setMat4("view", modelview);
+		//waldo_shader->setMat4("model", tempM);
+
+		//drawModelMatrix(sphereVec_tex, modelview, projection, waldo_shader, hl_shader, 5);
+
+		//sphere_tex->DrawWithTex(*waldo_shader, tex_waldo, "texture_0");
+		//sphere_tex->DrawWithTex(*waldo_shader);
+
+	}
+
+	vec3 gogoPos(vec3 handPos, vec3 torsoPos) {
+		float threshold = 0.50f;
+		float coeff = 15.0f;
+
+		vec3 distFromTorso = handPos - torsoPos;
+		float magnitude = length(distFromTorso);
+
+		if (magnitude > threshold) {
+			magnitude = magnitude + coeff * pow((magnitude - threshold), 2);
+		}
+
+		vec3 cursorPos = handPos + handPos.z * magnitude; // handPos.forward * magnitude
+		return cursorPos;
+	}
+
+	GLuint loadTexture(const char *textureFile) {
+		unsigned int textureID;
+		glGenTextures(1, &textureID);
+
+		int width, height, nrComponents;
+		unsigned char *data = stbi_load(textureFile, &width, &height, &nrComponents, 0);
+
+		if (data)
+		{
+			//cout << "Texture successfully loaded at path: " << textureFile << endl;
+
+			GLenum format;
+			if (nrComponents == 1) {
+				//cout << "nrComponents = 1" << endl; // debug
+				format = GL_RED;
+			}
+			else if (nrComponents == 3) {
+				//cout << "nrComponents = 3" << endl; // debug; it prints
+				format = GL_RGB;
+			}
+			else if (nrComponents == 4) {
+				//cout << "nrComponents = 4" << endl; // debug
+				format = GL_RGBA;
+			}
+
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			// Enable below two lines if turn off mipmap
+			/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, GL_TEXTURE_MAX_LEVEL);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD, GL_TEXTURE_MAX_LOD);*/
+
+			stbi_image_free(data);
+		}
+		else
+		{
+			std::cout << "Texture failed to load at path: " << textureFile << std::endl;
+			stbi_image_free(data);
+		}
+
+		return textureID;
 	}
 
 	int genRandomNum(int lo, int hi) {
@@ -881,7 +988,6 @@ public:
 		return randomNum;
 
 	}
-
 
 	vector<Model*> createModelArray(string const &path, int count) {
 		vector<Model*> modelVec;

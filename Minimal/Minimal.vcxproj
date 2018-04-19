@@ -144,6 +144,8 @@
     <None Include="hlShader.frag" />
     <None Include="packages.config" />
     <None Include="regShader.frag" />
+    <None Include="waldoShader.frag" />
+    <None Include="waldoShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h" />

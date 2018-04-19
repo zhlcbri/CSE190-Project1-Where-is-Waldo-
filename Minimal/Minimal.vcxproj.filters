@@ -37,6 +37,12 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="..\hlShader.frag" />
+    <None Include="waldoShader.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="waldoShader.frag">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyShader.h">
