@@ -811,16 +811,19 @@ public:
 
 	// highlight shaders
 	const char* hl_frag;
-	MyShader* hl_shader;
+	MyShader* hl_shader;//cursor
 
 	// waldo shaders
 	const char* waldo_vert;
 	const char* waldo_frag;
-	MyShader* waldo_shader;
+	MyShader* waldo_shader;//waldo
 
 	// models and their vectors
 	Model * sphere;
 	Model * sphere_tex;
+
+	Model * sphere_3;
+
 	vector<Model*> sphereVec;
 	vector<Model*> sphereVec_tex;
 
@@ -831,12 +834,16 @@ public:
 	ColorCubeScene() {
 		sphere = new Model("sphere.obj");
 		sphere_tex = new Model("sphere_2.obj");
-
-		cursor_frag = "../cursorShader.frag";
+		
+		sphere_3 = new Model("sphere_9.obj");
+		
+		//cursor_frag = "../cursorShader.frag";
+		cursor_frag = "../hlShader.frag";
 		cursor_vert = "../cursorShader.vert";
 
 		reg_frag = "../regShader.frag";
-		hl_frag = "../hlShader.frag";
+		//hl_frag = "../hlShader.frag";
+		hl_frag = "../cursorShader.frag";
 
 		waldo_frag = "waldoShader.frag";
 		waldo_vert = "waldoShader.vert";
@@ -847,11 +854,11 @@ public:
 		waldo_shader = new MyShader(waldo_vert, waldo_frag);
 
 		// create a 3D array of spheres
-		sphereVec = createModelArray("sphere.obj", 125);
-		sphereVec_tex = createModelArray("sphere_2.obj", 125);
+		//sphereVec = createModelArray("sphere.obj", 125);
+		// sphereVec_tex = createModelArray("sphere_2.obj", 125);
+		sphereVec_tex = createModelArray("sphere_9.obj", 125);
 
 		// specify texture file path
-		//tex_waldo_path = "../waldo.jpg";
 		tex_waldo_path = "waldo.ppm";
 		tex_waldo = loadTexture(tex_waldo_path);
 	}
@@ -878,62 +885,112 @@ public:
 	void render(const mat4 & projection, const mat4 & modelview) {
 
 		// Pass in P and V to vertex shader
-		//hl_shader->use();
-		hl_shader->setMat4("projection", projection);
-		hl_shader->setMat4("view", modelview);
-
-		glm::mat4 T_in = glm::translate(glm::mat4(1.0f), -hand);
-		glm::mat4 T = glm::translate(glm::mat4(1.0f), hand);
-		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.05, 0.05, 0.05));
-		//glm::mat4 S = glm::mat4(1.0f);
-
-		// Pass in M and draw cursor
-		hl_shader->setMat4("model", T*S*T_in);
-		sphere->Draw(*hl_shader);
-		//sphere_tex->Draw(*hl_shader);
-
-		// Draw the 3D array of spheres
 		cursor_shader->use();
 		cursor_shader->setMat4("projection", projection);
 		cursor_shader->setMat4("view", modelview);
 
-		float space = 0.5f;
-		s_position = vec3(1 * space - 1.0f, 1 * space - 1.0f, (1 * space - 1.0f));
-		mat4 tempM = translate(glm::mat4(1.0f), s_position);
-		cursor_shader->setMat4("model", tempM);
+		glm::mat4 T_in = glm::translate(glm::mat4(1.0f), -hand);
+		glm::mat4 T = glm::translate(glm::mat4(1.0f), hand);
+		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.14f, 0.14f, 0.14f));
+		//glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
 
+		// Pass in M and draw cursor
+		cursor_shader->setMat4("model", T*S*T_in);
+		sphere->Draw(*cursor_shader);
+		////sphere_tex->Draw(*hl_shader);
 
-		//drawModelMatrix(sphereVec, modelview, projection, cursor_shader, hl_shader, 5); // change shader
-	    drawModelMatrix(sphereVec_tex, modelview, projection, cursor_shader, hl_shader, 5);
+		//// Draw the 3D array of spheres
+		//hl_shader->use();
+		//hl_shader->setMat4("projection", projection);
+		//hl_shader->setMat4("view", modelview);
 
-		// try draw sphere with waldo texture
+		///*float space = 0.28f;
+		//s_position = vec3(1 * space - 1.0f, 1 * space - 1.0f, (1 * space - 1.0f));
+		//mat4 tempM = translate(glm::mat4(1.0f), s_position);*/
+		////cursor_shader->setMat4("model", tempM);
+
+		////drawModelMatrix(sphereVec, modelview, projection, hl_shader, waldo_shader, 5); // change shader
+	 //   //drawModelMatrix(sphereVec_tex, modelview, projection, hl_shader, waldo_shader, 5);
+
+		//// try draw sphere with waldo texture
 		//waldo_shader->use();
 		//waldo_shader->setMat4("projection", projection);
 		//waldo_shader->setMat4("view", modelview);
-		//waldo_shader->setMat4("model", tempM);
+		////waldo_shader->setMat4("model", tempM);
+		//S = glm::scale(glm::mat4(1.0f), glm::vec3(0.001f, 0.001f, 0.001f));
+		//waldo_shader->setMat4("model", T*S*T_in);
+		////sphere_3->Draw(*waldo_shader);
 
-		//drawModelMatrix(sphereVec_tex, modelview, projection, waldo_shader, hl_shader, 5);
+		drawModelMatrix(sphereVec_tex, modelview, projection, hl_shader, waldo_shader, 5);
 
 		//sphere_tex->DrawWithTex(*waldo_shader, tex_waldo, "texture_0");
 		//sphere_tex->DrawWithTex(*waldo_shader);
+		//sphere_tex->Draw(*waldo_shader);
 
 	}
 
-	vec3 gogoPos(vec3 handPos, vec3 torsoPos) {
-		float threshold = 0.50f;
-		float coeff = 15.0f;
+	void drawModelMatrix(vector<Model*> modelVec, mat4 V, mat4 P, MyShader* shader, MyShader * hshader, int count) {
 
-		vec3 distFromTorso = handPos - torsoPos;
-		float magnitude = length(distFromTorso);
+		shader->use();
+		//shader->setMat4("model", M);
+		shader->setMat4("view", V);
+		shader->setMat4("projection", P);
+		int i = 0; // model's index in vector
+		float space = 0.28f;
 
-		if (magnitude > threshold) {
-			magnitude = magnitude + coeff * pow((magnitude - threshold), 2);
+		for (float x = 0; x < count; x += 1.0f) {
+			// check if count is out of vector bound
+			if (i > modelVec.size() - 1) break;
+
+			for (float y = 0; y < count; y += 1.0f) {
+
+				for (float z = 0; z < count; z += 1.0f) {
+					//don not rotate now
+					s_position = vec3(x * space - 1.0f, y * space - 0.3f, (-z * space - 0.5f));
+					//mat4 tempM = translate(glm::mat4(1.0f), s_position);
+					//mat4 T_i = 
+					//mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.0005f, 0.0005f, 0.0005f)); //
+					glm::mat4 T_inverse = glm::translate(glm::mat4(1.0f), -s_position);
+					glm::mat4 T_back = glm::translate(glm::mat4(1.0f), s_position);
+					//glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.05f, 0.05f, 0.05f));
+					glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.0010f, 0.0010f, 0.0010f));
+
+					shader->setMat4("model", T_back*S * T_inverse);
+
+					// if current vector element is not null, draw it using tempM
+					if (modelVec.at(i) != nullptr) {
+						if (i == randomNum && game_started) {
+							hl_position = s_position;
+							//cout << i<<" = "<<randomNum<< endl;
+							hshader->use();
+							//shader->setMat4("model", M);
+							hshader->setMat4("view", V);
+							hshader->setMat4("projection", P);
+							hshader->setMat4("model", T_back*S * T_inverse);
+							modelVec.at(i)->Draw(*hshader);
+							if (gen_random == 1) {
+								gen_random = 0;
+							}
+						}
+
+						else {
+							shader->use();
+							shader->setMat4("model", T_back*S * T_inverse);
+							shader->setMat4("view", V);
+							shader->setMat4("projection", P);
+							modelVec.at(i)->Draw(*shader);
+						}
+
+						i++;
+					}
+					else {
+						cout << "modelVec.at(" << i << ") " << "is nullptr!" << endl;
+					}
+				}
+			}
 		}
-
-		vec3 cursorPos = handPos + handPos.z * magnitude; // handPos.forward * magnitude
-		return cursorPos;
 	}
-
+	
 	GLuint loadTexture(const char *textureFile) {
 		unsigned int textureID;
 		glGenTextures(1, &textureID);
@@ -943,7 +1000,7 @@ public:
 
 		if (data)
 		{
-			//cout << "Texture successfully loaded at path: " << textureFile << endl;
+			cout << "Texture successfully loaded at path: " << textureFile << endl;
 
 			GLenum format;
 			if (nrComponents == 1) {
@@ -998,60 +1055,7 @@ public:
 		return modelVec;
 	}
 
-	void drawModelMatrix(vector<Model*> modelVec, mat4 V, mat4 P, MyShader* shader, MyShader * hshader, int count) {
-
-		shader->use();
-		//shader->setMat4("model", M);
-		shader->setMat4("view", V);
-		shader->setMat4("projection", P);
-		int i = 0; // model's index in vector
-		float space = 0.5f;
-
-		for (float x = 0; x < count; x += 1.0f) {
-			// check if count is out of vector bound
-			if (i > modelVec.size() - 1) break;
-
-			for (float y = 0; y < count; y += 1.0f) {
-
-				for (float z = 0; z < count; z += 1.0f) {
-					//don not rotate now
-					s_position = vec3(x * space - 1.0f, y * space - 1.0f, -(-z * space - 0.3f));
-					mat4 tempM = translate(glm::mat4(1.0f), s_position);
-					shader->setMat4("model", tempM);
-
-					// if current vector element is not null, draw it using tempM
-					if (modelVec.at(i) != nullptr) {
-						if (i == randomNum && game_started) {
-							hl_position = s_position;
-							//cout << i<<" = "<<randomNum<< endl;
-							hshader->use();
-							//shader->setMat4("model", M);
-							hshader->setMat4("view", V);
-							hshader->setMat4("projection", P);
-							hshader->setMat4("model", tempM);
-							modelVec.at(i)->Draw(*hshader);
-							if (gen_random == 1) {
-								gen_random = 0;
-							}
-						}
-
-						else {
-							shader->use();
-							shader->setMat4("model", tempM);
-							shader->setMat4("view", V);
-							shader->setMat4("projection", P);
-							modelVec.at(i)->Draw(*shader);
-						}
-
-						i++;
-					}
-					else {
-						cout << "modelVec.at(" << i << ") " << "is nullptr!" << endl;
-					}
-				}
-			}
-		}
-	}
+	
 };
 
 

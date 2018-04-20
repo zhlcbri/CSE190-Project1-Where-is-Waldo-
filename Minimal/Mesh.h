@@ -140,6 +140,8 @@ public:
 			glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
 			// and finally bind the texture
 			glBindTexture(GL_TEXTURE_2D, textures[i].id);
+
+
 		}
 
 		// draw mesh
@@ -159,7 +161,7 @@ public:
 		glBindTexture(GL_TEXTURE_2D, tex_waldo);
 		glUniform1i(glGetUniformLocation(shader.ID, "texture_0"), 0);
 		
-		glDrawElements(GL_TRIANGLE_STRIP, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);//
 		glBindVertexArray(0);
 
 		// always good practice to set everything back to defaults once configured.

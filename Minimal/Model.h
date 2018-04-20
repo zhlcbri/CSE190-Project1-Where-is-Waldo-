@@ -185,7 +185,8 @@ private:
 				rmax = rarray[i];
 		}
 		if (rmax > 0.14) {
-			ratio = rmax / 0.14;
+			ratio =  rmax / 0.14;
+			//cout << ratio << endl;
 		}
 		else {
 			ratio = 1;
@@ -200,7 +201,7 @@ private:
 			vector.x = mesh->mVertices[i].x / ratio;
 			vector.y = mesh->mVertices[i].y / ratio;
 			vector.z = mesh->mVertices[i].z / ratio;
-
+			
 			vertex.Position = vector;
 			// normals
 			vector.x = mesh->mNormals[i].x;
@@ -216,6 +217,7 @@ private:
 				vec.x = mesh->mTextureCoords[0][i].x;
 				vec.y = mesh->mTextureCoords[0][i].y;
 				vertex.TexCoords = vec;
+				//cout << "tex coord is: " << vec.x << ", " << vec.y << endl; //
 			}
 			else
 				vertex.TexCoords = glm::vec2(0.0f, 0.0f);
