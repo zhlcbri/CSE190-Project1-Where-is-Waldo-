@@ -672,6 +672,7 @@ protected:
 			else {
 				game_started = false;
 				cout << "points are " << point << endl;
+				point = 0;
 			}
 			//game_started = false;
 			//gen_random = 0;
@@ -936,7 +937,7 @@ public:
 		shader->setMat4("view", V);
 		shader->setMat4("projection", P);
 		int i = 0; // model's index in vector
-		float space = 0.28f;
+		float space = 0.30f;
 
 		for (float x = 0; x < count; x += 1.0f) {
 			// check if count is out of vector bound
