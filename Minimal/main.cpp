@@ -665,7 +665,7 @@ protected:
 				randomNum = (rand() % 125);//
 
 			double curr_time = ovr_GetTimeInSeconds();
-			if (curr_time - start_time <= 30.0) { // TODO change to 60
+			if (curr_time - start_time <= 60.0) { // TODO change to 60
 
 				// cout << "time passed: " << curr_time - start_time << endl;
 			}
