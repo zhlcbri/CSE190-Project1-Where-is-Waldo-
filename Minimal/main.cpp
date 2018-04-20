@@ -651,7 +651,7 @@ protected:
 
 		// If game has started, update current time every frame
 		if (game_started) {
-			if (glm::distance(hand, hl_position) < 0.3) { // TODO re-calculate value
+			if (glm::distance(hand, hl_position) < 0.2) { // TODO re-calculate value
 				if (OVR_SUCCESS(ovr_GetInputState(_session, ovrControllerType_Touch, &inputState)))
 				{
 					if (inputState.IndexTrigger[ovrHand_Left] > 0.5f) {
@@ -869,7 +869,7 @@ public:
 		delete(reg_shader);
 		delete(hl_shader);
 		// delete array
-		for (Model * m : sphereVec) {
+		for (Model * m : sphereVec_tex) {
 			delete(m);
 		}
 		// delete all char* too
@@ -946,7 +946,7 @@ public:
 
 				for (float z = 0; z < count; z += 1.0f) {
 					//don not rotate now
-					s_position = vec3(x * space - 1.0f, y * space - 0.3f, (-z * space - 0.5f));
+					s_position = vec3(x * space - 0.5f, y * space - 0.5f, -(-z * space - 0.0f));
 					//mat4 tempM = translate(glm::mat4(1.0f), s_position);
 					//mat4 T_i = 
 					//mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(0.0005f, 0.0005f, 0.0005f)); //
